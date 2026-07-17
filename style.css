@@ -1,0 +1,116 @@
+/* Evergreen Digital Academy — accessibility-first, no build step.
+   Readers may have low vision, tremor, old devices. Boring on purpose. */
+
+:root {
+  --ink: #1a1a1a;
+  --paper: #fffdf7;
+  --green: #1e5b3a;
+  --green-soft: #eaf3ed;
+  --accent: #8a4b08;
+  --line: #d8d3c4;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 22px; } /* large by default; JS control can raise it */
+html.size-lg { font-size: 26px; }
+html.size-xl { font-size: 30px; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", -apple-system, Roboto, Arial, sans-serif;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+header.site {
+  background: var(--green);
+  color: #fff;
+  padding: 1rem 1.25rem;
+}
+header.site a { color: #fff; text-decoration: none; }
+header.site .brand { font-size: 1.15rem; font-weight: 700; }
+header.site .tagline { margin: 0.15rem 0 0; font-size: 0.85rem; opacity: 0.95; }
+
+nav.crumbs { padding: 0.75rem 1.25rem; font-size: 0.85rem; }
+nav.crumbs a { color: var(--green); }
+
+main {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 3rem;
+}
+
+h1 { font-size: 1.7rem; line-height: 1.25; color: var(--green); }
+h2 { font-size: 1.25rem; margin-top: 2rem; color: var(--green); }
+h3 { font-size: 1.05rem; }
+
+a { color: var(--accent); }
+a:focus, button:focus { outline: 4px solid #f0b429; outline-offset: 2px; }
+
+p, li { max-width: 38rem; }
+
+/* Definition of a term, first use */
+.term { background: var(--green-soft); padding: 0.1em 0.25em; border-radius: 4px; font-weight: 600; }
+
+/* Numbered steps: one action each, generous spacing */
+ol.steps { padding-left: 1.4em; }
+ol.steps > li { margin: 0.9em 0; }
+
+/* Reassurance + safety callouts */
+.reassure, .safety, .practice {
+  border-left: 6px solid var(--green);
+  background: var(--green-soft);
+  padding: 0.75rem 1rem;
+  margin: 1.25rem 0;
+  border-radius: 6px;
+}
+.safety { border-color: #a33; background: #faecec; }
+.practice { border-color: #f0b429; background: #fdf6e3; }
+.reassure h2, .safety h2, .practice h2 { margin-top: 0; font-size: 1.05rem; }
+
+/* Lesson cards on the home page */
+ul.lessons { list-style: none; padding: 0; }
+ul.lessons li {
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  margin: 0.9rem 0;
+  padding: 1rem 1.1rem;
+  background: #fff;
+}
+ul.lessons li a { font-size: 1.1rem; font-weight: 700; }
+ul.lessons li p { margin: 0.4rem 0 0; }
+
+/* Text size control (progressive enhancement; site fully usable without) */
+.textsize { float: right; }
+.textsize button {
+  font-size: 1rem;
+  min-width: 48px;
+  min-height: 48px;
+  margin-left: 6px;
+  border: 2px solid #fff;
+  background: transparent;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.textsize .b2 { font-size: 1.2rem; }
+.textsize .b3 { font-size: 1.4rem; }
+
+footer.site {
+  border-top: 2px solid var(--line);
+  margin-top: 2rem;
+  padding: 1.25rem;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* Print: every lesson is a handout */
+@media print {
+  header.site .textsize, nav.crumbs, footer.site .nolink { display: none; }
+  html { font-size: 13pt; }
+  body { background: #fff; }
+  a { color: #000; text-decoration: none; }
+  .reassure, .safety, .practice { border: 1.5pt solid #000; background: #fff; }
+}
