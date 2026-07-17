@@ -83,9 +83,27 @@ def render(md):
             out.append("<li>" + inline(" ".join(item)) + "</li>")
             item.clear()
 
+    # Simple inline block preservation for safe raw HTML diagrams
+    in_html_block = False
+    html_block = []
+
     for raw in md.splitlines():
         line = raw.rstrip()
         stripped = line.strip()
+
+        if stripped.startswith("<div") or stripped.startswith("<svg"):
+            flush_item(); close_list(); flush_para()
+            in_html_block = True
+            html_block.append(raw)
+            continue
+        elif in_html_block:
+            html_block.append(raw)
+            if stripped.endswith("</div>") or stripped.endswith("</svg>"):
+                in_html_block = False
+                out.append("\n".join(html_block))
+                html_block = []
+            continue
+
         m = re.match(r"^(#{1,3}) (.+)$", line)
         if m:
             flush_item(); close_list(); flush_para()
