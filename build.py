@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-"""Render lessons/*.md into lessons/*.html wrapped in the site chrome.
-
-Dependency-free on purpose (no pandoc/markdown lib on every machine).
-Handles the narrow markdown subset our style guide allows: #/##/### headers,
-paragraphs, **bold**, *italics*, ordered/unordered lists, and --- rules.
-Run from the repo root: python3 build.py
-"""
+"""Render lessons/*.md into lessons/*.html wrapped in the site chrome."""
 import html
 import re
 from pathlib import Path
@@ -21,21 +15,27 @@ CHROME = """<!DOCTYPE html>
 </head>
 <body>
 <header class="site">
-  <span class="textsize" id="textsize" hidden>
-    <button class="b1" data-size="" aria-label="Normal text size">A</button>
-    <button class="b2" data-size="size-lg" aria-label="Large text size">A</button>
-    <button class="b3" data-size="size-xl" aria-label="Largest text size">A</button>
-  </span>
-  <div class="brand"><a href="../index.html">Evergreen Digital Academy</a></div>
-  <p class="tagline">Free, patient technology lessons for older adults</p>
+  <div class="container">
+    <div class="brand-row">
+      <div>
+        <div class="brand"><a href="../index.html">Evergreen Digital Academy</a></div>
+        <p class="tagline">Free, patient technology lessons for older adults</p>
+      </div>
+      <div class="textsize" id="textsize" hidden>
+        <button class="b1" data-size="" aria-label="Normal text size">A</button>
+        <button class="b2" data-size="size-lg" aria-label="Large text size">A</button>
+        <button class="b3" data-size="size-xl" aria-label="Largest text size">A</button>
+      </div>
+    </div>
+  </div>
 </header>
-<nav class="crumbs"><a href="../index.html">&larr; All lessons</a></nav>
-<main>
+<nav class="crumbs"><a href="../index.html">&larr; Back to all lessons</a></nav>
+<main class="lesson-content">
 {body}
 </main>
 <footer class="site">
-  <p>Evergreen Digital Academy · lessons are free to read, print, and share
-  (CC BY-SA 4.0) · <span class="nolink"><a href="../about.html">about this project</a></span></p>
+  <p><strong>Evergreen Digital Academy</strong></p>
+  <p>Lessons are free to read, print, and share (CC BY-SA 4.0) · <span class="nolink"><a href="../about.html">About this project</a></span></p>
 </footer>
 <script>
 (function () {{
@@ -56,13 +56,11 @@ CHROME = """<!DOCTYPE html>
 </html>
 """
 
-
 def inline(text):
     text = html.escape(text, quote=False)
     text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
     text = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", text)
     return text
-
 
 def render(md):
     out, para, mode = [], [], None  # mode: None | 'ul' | 'ol'
@@ -116,7 +114,6 @@ def render(md):
     flush_item(); close_list(); flush_para()
     return "\n".join(out)
 
-
 def main():
     for src in sorted(Path("lessons").glob("*.md")):
         md = src.read_text(encoding="utf-8")
@@ -127,7 +124,6 @@ def main():
         dst.write_text(CHROME.format(title=html.escape(title), body=body),
                        encoding="utf-8")
         print("built", dst)
-
 
 if __name__ == "__main__":
     main()

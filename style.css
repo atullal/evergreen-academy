@@ -1,116 +1,185 @@
-/* Evergreen Digital Academy — accessibility-first, no build step.
-   Readers may have low vision, tremor, old devices. Boring on purpose. */
+/* Evergreen Digital Academy — accessible, but rich and complete */
 
 :root {
-  --ink: #1a1a1a;
-  --paper: #fffdf7;
-  --green: #1e5b3a;
-  --green-soft: #eaf3ed;
-  --accent: #8a4b08;
-  --line: #d8d3c4;
+  --ink: #1a202c;
+  --paper: #f7fafc;
+  --white: #ffffff;
+  --green: #276749;
+  --green-soft: #f0fff4;
+  --green-hover: #22543d;
+  --accent: #b7791f;
+  --accent-light: #fffff0;
+  --line: #e2e8f0;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
 }
 
 * { box-sizing: border-box; }
 
-html { font-size: 22px; } /* large by default; JS control can raise it */
+html { font-size: 22px; scroll-behavior: smooth; }
 html.size-lg { font-size: 26px; }
 html.size-xl { font-size: 30px; }
 
 body {
   margin: 0;
-  font-family: "Segoe UI", -apple-system, Roboto, Arial, sans-serif;
-  line-height: 1.65;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.6;
   color: var(--ink);
   background: var(--paper);
 }
 
+/* Header & Hero */
 header.site {
-  background: var(--green);
-  color: #fff;
-  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, var(--green), var(--green-hover));
+  color: var(--white);
+  padding: 1.5rem 2rem;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
-header.site a { color: #fff; text-decoration: none; }
-header.site .brand { font-size: 1.15rem; font-weight: 700; }
-header.site .tagline { margin: 0.15rem 0 0; font-size: 0.85rem; opacity: 0.95; }
+header.site .container {
+  max-width: 48rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+header.site .brand-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header.site a { color: var(--white); text-decoration: none; }
+header.site .brand { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; }
+header.site .tagline { margin: 0.5rem 0 0; font-size: 0.95rem; opacity: 0.9; font-weight: 500; }
 
-nav.crumbs { padding: 0.75rem 1.25rem; font-size: 0.85rem; }
-nav.crumbs a { color: var(--green); }
+.hero {
+  background: var(--white);
+  padding: 4rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+}
+.hero h1 { font-size: 2.2rem; color: var(--green); margin-top: 0; margin-bottom: 1rem; line-height: 1.2; }
+.hero p { font-size: 1.1rem; max-width: 40rem; margin: 0 auto 2rem auto; color: #4a5568; }
+.hero .cta {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--white);
+  padding: 0.8rem 2rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: var(--shadow-sm);
+}
+.hero .cta:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+nav.crumbs { padding: 1rem 2rem; max-width: 48rem; margin: 0 auto; font-size: 0.9rem; font-weight: 600; }
+nav.crumbs a { color: var(--green); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+nav.crumbs a:hover { border-color: var(--green); }
 
 main {
-  max-width: 42rem;
+  max-width: 48rem;
   margin: 0 auto;
-  padding: 1rem 1.25rem 3rem;
+  padding: 2rem 2rem 4rem;
 }
 
-h1 { font-size: 1.7rem; line-height: 1.25; color: var(--green); }
-h2 { font-size: 1.25rem; margin-top: 2rem; color: var(--green); }
-h3 { font-size: 1.05rem; }
+h2 { font-size: 1.6rem; margin-top: 3rem; color: var(--green); border-bottom: 2px solid var(--line); padding-bottom: 0.5rem; }
+h3 { font-size: 1.25rem; color: #2d3748; }
 
-a { color: var(--accent); }
-a:focus, button:focus { outline: 4px solid #f0b429; outline-offset: 2px; }
+a { color: var(--accent); font-weight: 500; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: #975a16; }
+a:focus, button:focus { outline: 4px solid #ecc94b; outline-offset: 2px; }
 
-p, li { max-width: 38rem; }
+p, li { max-width: 42rem; }
 
-/* Definition of a term, first use */
-.term { background: var(--green-soft); padding: 0.1em 0.25em; border-radius: 4px; font-weight: 600; }
+/* Lesson grid */
+ul.lessons { 
+  list-style: none; 
+  padding: 0; 
+  display: grid; 
+  gap: 1.5rem; 
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+  margin-top: 2rem;
+}
+ul.lessons li {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+ul.lessons li:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--green);
+}
+ul.lessons li a { font-size: 1.25rem; font-weight: 700; color: var(--green); text-decoration: none; margin-bottom: 0.75rem; }
+ul.lessons li a::after { content: " →"; opacity: 0; transition: opacity 0.2s; }
+ul.lessons li:hover a::after { opacity: 1; }
+ul.lessons li p { margin: 0; font-size: 0.95rem; color: #4a5568; flex-grow: 1; }
 
-/* Numbered steps: one action each, generous spacing */
-ol.steps { padding-left: 1.4em; }
-ol.steps > li { margin: 0.9em 0; }
-
-/* Reassurance + safety callouts */
+/* Boxes */
 .reassure, .safety, .practice {
   border-left: 6px solid var(--green);
   background: var(--green-soft);
-  padding: 0.75rem 1rem;
-  margin: 1.25rem 0;
-  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  border-radius: 0 8px 8px 0;
+  box-shadow: var(--shadow-sm);
 }
-.safety { border-color: #a33; background: #faecec; }
-.practice { border-color: #f0b429; background: #fdf6e3; }
-.reassure h2, .safety h2, .practice h2 { margin-top: 0; font-size: 1.05rem; }
+.safety { border-color: #e53e3e; background: #fff5f5; }
+.practice { border-color: #d69e2e; background: var(--accent-light); }
+.reassure h2, .safety h2, .practice h2 { margin-top: 0; font-size: 1.15rem; border: none; padding-bottom: 0; color: inherit; }
 
-/* Lesson cards on the home page */
-ul.lessons { list-style: none; padding: 0; }
-ul.lessons li {
-  border: 2px solid var(--line);
-  border-radius: 10px;
-  margin: 0.9rem 0;
-  padding: 1rem 1.1rem;
-  background: #fff;
-}
-ul.lessons li a { font-size: 1.1rem; font-weight: 700; }
-ul.lessons li p { margin: 0.4rem 0 0; }
+/* Markdown internals */
+.term { background: var(--green-soft); padding: 0.2em 0.4em; border-radius: 4px; font-weight: 700; color: var(--green); }
+ol.steps { padding-left: 1.5em; }
+ol.steps > li { margin: 1rem 0; padding-left: 0.5rem; }
+ol.steps > li::marker { font-weight: 700; color: var(--green); }
 
-/* Text size control (progressive enhancement; site fully usable without) */
-.textsize { float: right; }
+/* Accessibility Controls */
+.textsize { display: flex; gap: 0.5rem; align-items: center; }
 .textsize button {
-  font-size: 1rem;
-  min-width: 48px;
-  min-height: 48px;
-  margin-left: 6px;
-  border: 2px solid #fff;
-  background: transparent;
-  color: #fff;
+  font-family: inherit;
+  font-weight: 700;
+  min-width: 44px;
+  min-height: 44px;
+  border: 2px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.1);
+  color: var(--white);
   border-radius: 8px;
   cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
 }
+.textsize button:hover { background: rgba(255,255,255,0.25); border-color: var(--white); }
+.textsize .b1 { font-size: 1rem; }
 .textsize .b2 { font-size: 1.2rem; }
 .textsize .b3 { font-size: 1.4rem; }
 
+/* Footer */
 footer.site {
-  border-top: 2px solid var(--line);
-  margin-top: 2rem;
-  padding: 1.25rem;
-  font-size: 0.8rem;
+  background: var(--white);
+  border-top: 1px solid var(--line);
+  padding: 3rem 2rem;
   text-align: center;
+  color: #718096;
+  font-size: 0.9rem;
 }
+footer.site a { color: #4a5568; font-weight: 600; text-decoration: none; }
+footer.site a:hover { color: var(--green); }
 
-/* Print: every lesson is a handout */
 @media print {
-  header.site .textsize, nav.crumbs, footer.site .nolink { display: none; }
-  html { font-size: 13pt; }
-  body { background: #fff; }
+  header.site .textsize, nav.crumbs, footer.site .nolink, .hero .cta { display: none; }
+  html { font-size: 12pt; }
+  body { background: #fff; color: #000; }
   a { color: #000; text-decoration: none; }
-  .reassure, .safety, .practice { border: 1.5pt solid #000; background: #fff; }
+  .reassure, .safety, .practice { border: 1px solid #ccc; background: #fff; box-shadow: none; border-left-width: 6px; }
+  header.site { background: #fff; color: #000; padding: 0; box-shadow: none; }
+  header.site .brand { color: #000; }
+  ul.lessons { display: block; }
+  ul.lessons li { border: none; border-bottom: 1px solid #ccc; border-radius: 0; padding: 1rem 0; box-shadow: none; margin: 0; }
 }
