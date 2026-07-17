@@ -9,18 +9,19 @@ CHROME = """<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{title} — Evergreen Digital Academy</title>
+<title>__TITLE__ — Evergreen Digital Academy</title>
 <meta name="description" content="Free, patient technology lessons for older adults.">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header class="site">
-  <div class="container">
-    <div class="brand-row">
-      <div>
-        <div class="brand"><a href="../index.html">Evergreen Digital Academy</a></div>
-        <p class="tagline">Free, patient technology lessons for older adults</p>
-      </div>
+  <div class="header-container">
+    <div>
+      <div class="brand"><a href="../index.html">Evergreen Digital Academy</a></div>
+      <div class="tagline">Free, patient technology lessons for older adults</div>
+    </div>
+    <div class="toolbar">
+      <div id="google_translate_element"></div>
       <div class="textsize" id="textsize" hidden>
         <button class="b1" data-size="" aria-label="Normal text size">A</button>
         <button class="b2" data-size="size-lg" aria-label="Large text size">A</button>
@@ -31,7 +32,7 @@ CHROME = """<!DOCTYPE html>
 </header>
 <nav class="crumbs"><a href="../index.html">&larr; Back to all lessons</a></nav>
 <main class="lesson-content">
-{body}
+__BODY__
 <div class="completion-box">
   <button id="markCompleteBtn" class="btn-complete">Mark Lesson as Complete</button>
 </div>
@@ -40,34 +41,41 @@ CHROME = """<!DOCTYPE html>
   <p><strong>Evergreen Digital Academy</strong></p>
   <p>Lessons are free to read, print, and share (CC BY-SA 4.0) · <span class="nolink"><a href="../about.html">About this project</a></span></p>
 </footer>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: "en", layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, "google_translate_element");
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
-(function () {{
+(function () {
   var box = document.getElementById('textsize');
-  if (box) {{
+  if (box) {
     box.hidden = false;
     var saved = localStorage.getItem('ega-size') || '';
     if (saved) document.documentElement.classList.add(saved);
-    box.addEventListener('click', function (e) {{
+    box.addEventListener('click', function (e) {
       var b = e.target.closest('button'); if (!b) return;
-      document.documentElement.classList.remove('size-lg', 'size-xl');\n      if (b.dataset.size) document.documentElement.classList.add(b.dataset.size);
+      document.documentElement.classList.remove('size-lg', 'size-xl');
+      if (b.dataset.size) document.documentElement.classList.add(b.dataset.size);
       localStorage.setItem('ega-size', b.dataset.size);
-    }});
-  }}
+    });
+  }
   
-  var path = window.location.pathname.split('/').pop();
+  var path = window.location.pathname.split("/").pop();
   var btn = document.getElementById('markCompleteBtn');
-  if (btn) {{
-    if (localStorage.getItem('completed-' + path)) {{
+  if (btn) {
+    if (localStorage.getItem('completed-' + path)) {
       btn.textContent = 'Lesson Completed ✓';
       btn.disabled = true;
-    }}
-    btn.addEventListener('click', function() {{
+    }
+    btn.addEventListener('click', function() {
       localStorage.setItem('completed-' + path, 'true');
       btn.textContent = 'Lesson Completed ✓';
       btn.disabled = true;
-    }});
-  }}
-}})();
+    });
+  }
+})();
 </script>
 </body>
 </html>
@@ -156,8 +164,8 @@ def main():
         title = title_m.group(1) if title_m else src.stem
         body = render(md)
         dst = src.with_suffix(".html")
-        dst.write_text(CHROME.format(title=html.escape(title), body=body),
-                       encoding="utf-8")
+        html_content = CHROME.replace("__TITLE__", html.escape(title)).replace("__BODY__", body)
+        dst.write_text(html_content, encoding="utf-8")
         print("built", dst)
 
 if __name__ == "__main__":

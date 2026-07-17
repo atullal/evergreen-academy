@@ -9,12 +9,13 @@
 </head>
 <body>
 <header class="site">
-  <div class="container">
-    <div class="brand-row">
-      <div>
-        <div class="brand"><a href="../index.html">Evergreen Digital Academy</a></div>
-        <p class="tagline">Free, patient technology lessons for older adults</p>
-      </div>
+  <div class="header-container">
+    <div>
+      <div class="brand"><a href="../index.html">Evergreen Digital Academy</a></div>
+      <div class="tagline">Free, patient technology lessons for older adults</div>
+    </div>
+    <div class="toolbar">
+      <div id="google_translate_element"></div>
       <div class="textsize" id="textsize" hidden>
         <button class="b1" data-size="" aria-label="Normal text size">A</button>
         <button class="b2" data-size="size-lg" aria-label="Large text size">A</button>
@@ -30,7 +31,8 @@
 <p>First, the most important thing in this whole lesson:</p>
 <p><strong>You cannot break your phone by touching the screen.</strong> Whatever happens, there is always a way back. The worst case is that something confusing appears — and this lesson shows you how to get home from anywhere.</p>
 <hr>
-<h2>The three touches</h2>\n<p>Your phone understands a few simple touches. Practice each one now — on any screen, it does not matter which.</p>
+<h2>The three touches</h2>
+<p>Your phone understands a few simple touches. Practice each one now — on any screen, it does not matter which.</p>
 <div class="diagram-container">
   <svg class="diagram-svg" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram showing Tap, Swipe, and Press touches">
     <!-- Tap -->
@@ -125,7 +127,7 @@
     });
   }
   
-  var path = window.location.pathname.split('/').pop();
+  var path = window.location.pathname.split("/").pop();
   var btn = document.getElementById('markCompleteBtn');
   if (btn) {
     if (localStorage.getItem('completed-' + path)) {

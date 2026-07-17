@@ -8,11 +8,17 @@
 </head>
 <body>
 <header class="site">
-  <div class="container">
-    <div class="brand-row">
-      <div>
-        <div class="brand"><a href="index.html">Evergreen Digital Academy</a></div>
-        <p class="tagline">Free, patient technology lessons for older adults</p>
+  <div class="header-container">
+    <div>
+      <div class="brand"><a href="index.html">Evergreen Digital Academy</a></div>
+      <div class="tagline">Free, patient technology lessons for older adults</div>
+    </div>
+    <div class="toolbar">
+      <div id="google_translate_element"></div>
+      <div class="textsize" id="textsize" hidden>
+        <button class="b1" data-size="" aria-label="Normal text size">A</button>
+        <button class="b2" data-size="size-lg" aria-label="Large text size">A</button>
+        <button class="b3" data-size="size-xl" aria-label="Largest text size">A</button>
       </div>
     </div>
   </div>
@@ -20,28 +26,49 @@
 <nav class="crumbs"><a href="index.html">&larr; Back to home</a></nav>
 <main>
   <h1>Global Accessibility & Translation Guide</h1>
-  <p>Evergreen Digital Academy is built to be accessible to older adults in every corner of the world. Because many older readers are new to browsing, we rely on automatic browser translation tools rather than complex selectors that can fail or confuse old devices.</p>
+  <p>Evergreen Digital Academy is built to be accessible to older adults in every corner of the world. By embedding a global translation widget directly into the header of every page, anyone can access these lessons instantly in over 100 languages.</p>
 
   <h2>How to translate these lessons in your language</h2>
-  <p>This website is built with clean, semantic web code. This makes it instantly compatible with the automatic translation features inside modern web browsers like <strong>Google Chrome</strong>, <strong>Safari</strong>, and <strong>Microsoft Edge</strong>.</p>
-  
+  <p>At the top of the page, next to the text-size controls, look for the dropdown menu labeled <strong>Select Language</strong>.</p>
   <ol class="steps">
-    <li><strong>In Google Chrome (Phone or Computer):</strong> Look at the top right of your address bar for the translation symbol (it looks like a small G or folded paper), or tap the menu (three dots) and choose <strong>"Translate..."</strong>.</li>
-    <li><strong>In Safari (iPhone or iPad):</strong> Tap the <strong>"aA"</strong> button on the left side of your address bar, then tap <strong>"Translate to [Your Language]"</strong>.</li>
-    <li><strong>In Microsoft Edge:</strong> The browser will automatically ask to translate the page if your device is set to another language. If not, tap the translate icon in the address bar.</li>
+    <li>Click on <strong>Select Language</strong>.</li>
+    <li>Scroll or search for your native language in the list.</li>
+    <li>Click your language, and the page will instantly translate.</li>
   </ol>
 
   <h2>Accessibility Standards</h2>
   <ul>
-    <li><strong>Typography:</strong> Large, clean font-face sizing options that can scale up dynamically using the "A / A / A" controls.</li>
-    <li><strong>Contrast:</strong> High-contrast color values that pass strict WCAG AA standards for low vision.</li>
-    <li><strong>RTL Support:</strong> Full Right-to-Left formatting automatic scaling for languages like Arabic, Hebrew, and Farsi.</li>
-    <li><strong>Zero-Bloat:</strong> No heavy web libraries, meaning pages load instantly even on weak 3G networks and 10-year-old hardware.</li>
+    <li><strong>Dieter Rams Aesthetic:</strong> "Less, but better". Highly readable contrast, minimalist layout, and functional typography inspired by classic industrial design principles.</li>
+    <li><strong>Typography:</strong> Large, clean Helvetica/system font sizing options that scale up dynamically using the "A / A / A" controls.</li>
+    <li><strong>Instant Translation:</strong> Google Translate API automatically adapts content without relying on users knowing how to use built-in browser features.</li>
+    <li><strong>Zero-Bloat:</strong> No heavy animations, meaning pages load instantly and present no vestibular fatigue.</li>
   </ul>
 </main>
 <footer class="site">
   <p><strong>Evergreen Digital Academy</strong></p>
   <p>Lessons are free to read, print, and share (CC BY-SA 4.0)</p>
 </footer>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+(function () {
+  var box = document.getElementById('textsize');
+  if (box) {
+    box.hidden = false;
+    var saved = localStorage.getItem('ega-size') || '';
+    if (saved) document.documentElement.classList.add(saved);
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      document.documentElement.classList.remove('size-lg', 'size-xl');
+      if (b.dataset.size) document.documentElement.classList.add(b.dataset.size);
+      localStorage.setItem('ega-size', b.dataset.size);
+    });
+  }
+})();
+</script>
 </body>
 </html>

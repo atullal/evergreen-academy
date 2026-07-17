@@ -9,12 +9,13 @@
 </head>
 <body>
 <header class="site">
-  <div class="container">
-    <div class="brand-row">
-      <div>
-        <div class="brand"><a href="../index.html">Evergreen Digital Academy</a></div>
-        <p class="tagline">Free, patient technology lessons for older adults</p>
-      </div>
+  <div class="header-container">
+    <div>
+      <div class="brand"><a href="../index.html">Evergreen Digital Academy</a></div>
+      <div class="tagline">Free, patient technology lessons for older adults</div>
+    </div>
+    <div class="toolbar">
+      <div id="google_translate_element"></div>
       <div class="textsize" id="textsize" hidden>
         <button class="b1" data-size="" aria-label="Normal text size">A</button>
         <button class="b2" data-size="size-lg" aria-label="Large text size">A</button>
@@ -94,7 +95,7 @@
     });
   }
   
-  var path = window.location.pathname.split('/').pop();
+  var path = window.location.pathname.split("/").pop();
   var btn = document.getElementById('markCompleteBtn');
   if (btn) {
     if (localStorage.getItem('completed-' + path)) {
