@@ -69,6 +69,9 @@
 </ul>
 <hr>
 <p><em>Approved for publication — reviewer: bootstrap session (pre-fleet, Claude laptop), QA checklist v1, 2026-07-17. Queued for re-review by Quill (edu-editor) after fleet deploy.</em></p>
+<div class="completion-box">
+  <button id="markCompleteBtn" class="btn-complete">Mark Lesson as Complete</button>
+</div>
 </main>
 <footer class="site">
   <p><strong>Evergreen Digital Academy</strong></p>
@@ -77,16 +80,31 @@
 <script>
 (function () {
   var box = document.getElementById('textsize');
-  if (!box) return;
-  box.hidden = false;
-  var saved = localStorage.getItem('ega-size') || '';
-  if (saved) document.documentElement.classList.add(saved);
-  box.addEventListener('click', function (e) {
-    var b = e.target.closest('button'); if (!b) return;
-    document.documentElement.classList.remove('size-lg', 'size-xl');
-    if (b.dataset.size) document.documentElement.classList.add(b.dataset.size);
-    localStorage.setItem('ega-size', b.dataset.size);
-  });
+  if (box) {
+    box.hidden = false;
+    var saved = localStorage.getItem('ega-size') || '';
+    if (saved) document.documentElement.classList.add(saved);
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      document.documentElement.classList.remove('size-lg', 'size-xl');
+      if (b.dataset.size) document.documentElement.classList.add(b.dataset.size);
+      localStorage.setItem('ega-size', b.dataset.size);
+    });
+  }
+  
+  var path = window.location.pathname.split('/').pop();
+  var btn = document.getElementById('markCompleteBtn');
+  if (btn) {
+    if (localStorage.getItem('completed-' + path)) {
+      btn.textContent = 'Lesson Completed ✓';
+      btn.disabled = true;
+    }
+    btn.addEventListener('click', function() {
+      localStorage.setItem('completed-' + path, 'true');
+      btn.textContent = 'Lesson Completed ✓';
+      btn.disabled = true;
+    });
+  }
 })();
 </script>
 </body>
