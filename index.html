@@ -37,7 +37,7 @@
   </div>
 
   <h2 id="lessons">Available Lessons</h2>
-  <ul class="lessons">
+  <ul class="lessons" id="lesson-list">
     <li>
       <a href="lessons/getting-to-know-your-smartphone.html">📱 Getting to know your smartphone</a>
       <p>The three touches, the home screen, and the one move that always rescues you. Start here if you are brand new.</p>
@@ -62,16 +62,28 @@
 <script>
 (function () {
   var box = document.getElementById('textsize');
-  if (!box) return;
-  box.hidden = false;
-  var saved = localStorage.getItem('ega-size') || '';
-  if (saved) document.documentElement.classList.add(saved);
-  box.addEventListener('click', function (e) {
-    var b = e.target.closest('button'); if (!b) return;
-    document.documentElement.classList.remove('size-lg', 'size-xl');
-    if (b.dataset.size) document.documentElement.classList.add(b.dataset.size);
-    localStorage.setItem('ega-size', b.dataset.size);
-  });
+  if (box) {
+    box.hidden = false;
+    var saved = localStorage.getItem('ega-size') || '';
+    if (saved) document.documentElement.classList.add(saved);
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      document.documentElement.classList.remove('size-lg', 'size-xl');
+      if (b.dataset.size) document.documentElement.classList.add(b.dataset.size);
+      localStorage.setItem('ega-size', b.dataset.size);
+    });
+  }
+
+  var links = document.querySelectorAll('#lesson-list a');
+  for (var i = 0; i < links.length; i++) {
+    var path = links[i].getAttribute('href').split('/').pop();
+    if (localStorage.getItem('completed-' + path)) {
+      var badge = document.createElement('div');
+      badge.className = 'badge-completed';
+      badge.textContent = '✓ Completed';
+      links[i].parentNode.insertBefore(badge, links[i]);
+    }
+  }
 })();
 </script>
 </body>

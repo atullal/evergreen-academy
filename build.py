@@ -32,6 +32,9 @@ CHROME = """<!DOCTYPE html>
 <nav class="crumbs"><a href="../index.html">&larr; Back to all lessons</a></nav>
 <main class="lesson-content">
 {body}
+<div class="completion-box">
+  <button id="markCompleteBtn" class="btn-complete">Mark Lesson as Complete</button>
+</div>
 </main>
 <footer class="site">
   <p><strong>Evergreen Digital Academy</strong></p>
@@ -40,16 +43,31 @@ CHROME = """<!DOCTYPE html>
 <script>
 (function () {{
   var box = document.getElementById('textsize');
-  if (!box) return;
-  box.hidden = false;
-  var saved = localStorage.getItem('ega-size') || '';
-  if (saved) document.documentElement.classList.add(saved);
-  box.addEventListener('click', function (e) {{
-    var b = e.target.closest('button'); if (!b) return;
-    document.documentElement.classList.remove('size-lg', 'size-xl');
-    if (b.dataset.size) document.documentElement.classList.add(b.dataset.size);
-    localStorage.setItem('ega-size', b.dataset.size);
-  }});
+  if (box) {{
+    box.hidden = false;
+    var saved = localStorage.getItem('ega-size') || '';
+    if (saved) document.documentElement.classList.add(saved);
+    box.addEventListener('click', function (e) {{
+      var b = e.target.closest('button'); if (!b) return;
+      document.documentElement.classList.remove('size-lg', 'size-xl');
+      if (b.dataset.size) document.documentElement.classList.add(b.dataset.size);
+      localStorage.setItem('ega-size', b.dataset.size);
+    }});
+  }}
+  
+  var path = window.location.pathname.split('/').pop();
+  var btn = document.getElementById('markCompleteBtn');
+  if (btn) {{
+    if (localStorage.getItem('completed-' + path)) {{
+      btn.textContent = 'Lesson Completed ✓';
+      btn.disabled = true;
+    }}
+    btn.addEventListener('click', function() {{
+      localStorage.setItem('completed-' + path, 'true');
+      btn.textContent = 'Lesson Completed ✓';
+      btn.disabled = true;
+    }});
+  }}
 }})();
 </script>
 </body>
