@@ -3,7 +3,7 @@
 Free, patient technology lessons for older adults — plain words, one step
 at a time, large print, printable, nothing to buy, no tracking.
 
-**Live site:** https://atullal.github.io/evergreen-academy/
+**Live site:** https://atullal.xyz/evergreen-academy/
 
 ## How this project works
 
