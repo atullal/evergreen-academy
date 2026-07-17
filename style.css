@@ -183,3 +183,98 @@ footer.site a:hover { color: var(--green); }
   ul.lessons { display: block; }
   ul.lessons li { border: none; border-bottom: 1px solid #ccc; border-radius: 0; padding: 1rem 0; box-shadow: none; margin: 0; }
 }
+
+/* Mobile Optimization & Responsive Refinements */
+@media (max-width: 640px) {
+  html { font-size: 18px; } /* Slightly scale base typography down on smaller screens */
+  html.size-lg { font-size: 22px; }
+  html.size-xl { font-size: 26px; }
+  
+  header.site { padding: 1rem 1rem; }
+  header.site .brand-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .textsize { align-self: flex-start; }
+  
+  .hero { padding: 2.5rem 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  
+  main { padding: 1rem; }
+  ul.lessons { grid-template-columns: 1fr; gap: 1rem; }
+  
+  /* Make all diagrams, images, and videos comfortably scale to fit viewport width */
+  img, svg, video, .diagram-container {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* Accessibility & Language Support */
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure right-to-left layout for Hebrew, Arabic, etc. when dir="rtl" is set */
+[dir="rtl"] {
+  text-align: right;
+}
+[dir="rtl"] .textsize {
+  float: left;
+}
+[dir="rtl"] .reassure, [dir="rtl"] .safety, [dir="rtl"] .practice {
+  border-left: none;
+  border-right: 6px solid var(--green);
+  border-radius: 8px 0 0 8px;
+}
+[dir="rtl"] .safety {
+  border-right-color: #e53e3e;
+}
+[dir="rtl"] .practice {
+  border-right-color: #d69e2e;
+}
+[dir="rtl"] nav.crumbs {
+  direction: rtl;
+}
+
+/* Correct Diagrams & SVG styling */
+.diagram-container {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+.diagram-svg {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.diagram-caption {
+  font-size: 0.85rem;
+  color: #718096;
+  margin-top: 0.75rem;
+  font-weight: 500;
+}
+
+/* Subtle, Accessible Animations (respects reduced-motion media query) */
+@media (prefers-reduced-motion: no-preference) {
+  .hero .cta, ul.lessons li, .btn-complete {
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                background-color 0.2s ease, 
+                border-color 0.2s ease !important;
+  }
+  
+  /* Gentle reveal fade for lessons list */
+  ul.lessons li {
+    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
