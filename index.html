@@ -9,12 +9,13 @@
 </head>
 <body>
 <header class="site">
-  <div class="container">
-    <div class="brand-row">
-      <div>
-        <div class="brand">Evergreen Digital Academy</div>
-        <p class="tagline">Free, patient technology lessons for older adults</p>
-      </div>
+  <div class="header-container">
+    <div>
+      <div class="brand"><a href="index.html">Evergreen Digital Academy</a></div>
+      <div class="tagline">Free, patient technology lessons for older adults</div>
+    </div>
+    <div class="toolbar">
+      <div id="google_translate_element"></div>
       <div class="textsize" id="textsize" hidden>
         <button class="b1" data-size="" aria-label="Normal text size">A</button>
         <button class="b2" data-size="size-lg" aria-label="Large text size">A</button>
@@ -24,13 +25,13 @@
   </div>
 </header>
 
-<div class="hero">
-  <h1>Learn at your own pace.<br>Nothing here can break.</h1>
-  <p>These lessons are for people who did not grow up with the internet — written slowly, in plain words, with every term explained. They are free, with nothing to buy, no account to create, and no information collected about you.</p>
-  <a href="#lessons" class="cta">Start Learning Now</a>
-</div>
-
 <main>
+  <div class="hero">
+    <h1>Learn at your own pace.<br>Nothing here can break.</h1>
+    <p>These lessons are for people who did not grow up with the internet — written slowly, in plain words, with every term explained. They are free, with nothing to buy, no account to create, and no information collected about you.</p>
+    <a href="#lessons" class="cta primary">Start Learning Now</a>
+  </div>
+
   <div class="reassure">
     <h2>A promise before you start</h2>
     <p>You are not "bad with technology". Technology is often bad with people. Every lesson here assumes you are smart and capable — just new to this, and that is a fine place to be. Print any lesson and learn on paper if you prefer.</p>
@@ -55,10 +56,18 @@
   <h2>More lessons are on the way</h2>
   <p>This academy is growing steadily. Coming next: sending photos to family, paying safely online, and using government services on the internet. See the <a href="https://github.com/atullal/evergreen-academy/blob/main/ROADMAP.md">full roadmap</a>.</p>
 </main>
+
 <footer class="site">
   <p><strong>Evergreen Digital Academy</strong></p>
   <p>Lessons are free to read, print, and share (CC BY-SA 4.0) · <span class="nolink"><a href="about.html">About this project</a></span></p>
 </footer>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
 (function () {
   var box = document.getElementById('textsize');
