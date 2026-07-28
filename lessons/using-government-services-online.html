@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 8: Using Government Services Online — Evergreen Digital Academy</title>
+<meta name="description" content="Free, patient technology lessons for older adults.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site">
+  <div class="header-container">
+    <div>
+      <div class="brand"><a href="../index.html">Evergreen Digital Academy</a></div>
+      <div class="tagline">Free, patient technology lessons for older adults</div>
+    </div>
+    <div class="toolbar">
+      <div id="google_translate_element"></div>
+      <div class="textsize" id="textsize" hidden>
+        <button class="b1" data-size="" aria-label="Normal text size">A</button>
+        <button class="b2" data-size="size-lg" aria-label="Large text size">A</button>
+        <button class="b3" data-size="size-xl" aria-label="Largest text size">A</button>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="crumbs"><a href="../index.html">&larr; Back to all lessons</a></nav>
+<main class="lesson-content">
+<h1>Lesson 8: Using Government Services Online</h1>
+<p>Taking care of official business online—like checking Medicare, renewing a license, or reading tax information—can save you a trip and a long wait in line. It is perfectly normal to feel nervous about sharing your personal details with a website. Today, we will learn how to make sure you are using the real government website and not an imitation. Remember, if you ever feel confused, you can always close the page and call the agency on the phone instead.</p>
+<h2>The Official Portal</h2>
+<p>When the government sets up a website for you to use, they use a special address.</p>
+<ol class="steps">
+<li>An <strong>Official Portal</strong> is a website run directly by a government agency.</li>
+<li>Real government websites usually end in a special code. In the United States, they end in <strong>.gov</strong> (like `medicare.gov` or `ssa.gov`).</li>
+<li>In other countries, they often end in similar codes, like <strong>.gov.uk</strong> or <strong>.gov.au</strong>.</li>
+<li>If a website claims to be the government but ends in ".com" or ".org", be very careful. It might be a private company trying to charge you for a free service, or it might be a trick.</li>
+</ol>
+<h2>Spotting Copycat Websites</h2>
+<p>Criminals know that people trust the government. They often build fake websites to trick you.</p>
+<ol class="steps">
+<li>A <strong>Copycat Website</strong> is a fake page designed to look exactly like the real government portal, complete with official-looking logos and flags.</li>
+<li>These sites want you to type in your private information, like your Social Security number, or they want you to pay a fee.</li>
+<li>The safest way to avoid copycats is to never click on a link in an unexpected email or text message. The real government will almost never send you an unexpected text message with a link.</li>
+<li>Instead, open your internet browser and search for the agency yourself, making sure the result you click ends in `.gov`.</li>
+</ol>
+<h2>The Golden Rule Still Applies</h2>
+<p>Even when dealing with the "government," remember our golden rule of scams:</p>
+<ol class="steps">
+<li><strong>Urgency:</strong> The real government moves slowly. If a message says you will be arrested or fined "today" if you do not click a link, it is a scam.</li>
+<li><strong>Secrecy:</strong> The government does not ask you to keep secrets from your bank or family.</li>
+<li><strong>Money:</strong> The real government will never demand payment in gift cards, cryptocurrency, or wire transfers.</li>
+<li>If you see these things, stop immediately. Ask a trusted family member for help, or look up the agency's official phone number and call them directly.</li>
+</ol>
+<h2>Try it yourself</h2>
+<ol class="steps">
+<li>Open your internet browser.</li>
+<li>Type "Medicare" or "Social Security" into your search bar.</li>
+<li>Look closely at the list of results before you click anything.</li>
+<li>Find the result where the website address ends in `.gov`. This is the official site!</li>
+</ol>
+<hr>
+<h2>Printable Summary: Using Government Services Online</h2>
+<p><em> <strong>Official Portal:</strong> A real website run by the government. Look for <strong>.gov</strong> at the very end of the website name (or .gov.uk, .gov.au). </em> <strong>Copycat Website:</strong> A fake site designed to look official to steal your information or money. <em> <strong>Avoid Links:</strong> Do not click links in unexpected emails or texts claiming to be the government. Search for the agency yourself instead. </em> <strong>The Golden Rule:</strong> If a message claims to be the government and demands immediate secret payment, it is a scam. Stop and ask for help.</p>
+<hr>
+<p><strong>Approval:</strong></p>
+<ul>
+<li><strong>Reviewer:</strong> Quill</li>
+<li><strong>Date:</strong> 2026-07-28</li>
+<li><strong>Checklist Version:</strong> v1</li>
+</ul>
+<div class="completion-box">
+  <button id="markCompleteBtn" class="btn-complete">Mark Lesson as Complete</button>
+</div>
+</main>
+<footer class="site">
+  <p><strong>Evergreen Digital Academy</strong></p>
+  <p>Lessons are free to read, print, and share (CC BY-SA 4.0) · <span class="nolink"><a href="../about.html">About this project</a></span></p>
+</footer>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: "en", layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, "google_translate_element");
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+(function () {
+  var box = document.getElementById('textsize');
+  if (box) {
+    box.hidden = false;
+    var saved = localStorage.getItem('ega-size') || '';
+    if (saved) document.documentElement.classList.add(saved);
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      document.documentElement.classList.remove('size-lg', 'size-xl');
+      if (b.dataset.size) document.documentElement.classList.add(b.dataset.size);
+      localStorage.setItem('ega-size', b.dataset.size);
+    });
+  }
+  
+  var path = window.location.pathname.split("/").pop();
+  var btn = document.getElementById('markCompleteBtn');
+  if (btn) {
+    if (localStorage.getItem('completed-' + path)) {
+      btn.textContent = 'Lesson Completed ✓';
+      btn.disabled = true;
+    }
+    btn.addEventListener('click', function() {
+      localStorage.setItem('completed-' + path, 'true');
+      btn.textContent = 'Lesson Completed ✓';
+      btn.disabled = true;
+    });
+  }
+})();
+</script>
+</body>
+</html>
