@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sending photos to family — Evergreen Digital Academy</title>
+<meta name="description" content="Free, patient technology lessons for older adults.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site">
+  <div class="header-container">
+    <div>
+      <div class="brand"><a href="../index.html">Evergreen Digital Academy</a></div>
+      <div class="tagline">Free, patient technology lessons for older adults</div>
+    </div>
+    <div class="toolbar">
+      <div id="google_translate_element"></div>
+      <div class="textsize" id="textsize" hidden>
+        <button class="b1" data-size="" aria-label="Normal text size">A</button>
+        <button class="b2" data-size="size-lg" aria-label="Large text size">A</button>
+        <button class="b3" data-size="size-xl" aria-label="Largest text size">A</button>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="crumbs"><a href="../index.html">&larr; Back to all lessons</a></nav>
+<main class="lesson-content">
+<h1>Sending photos to family</h1>
+<p>Taking a picture and sharing it is a wonderful way to stay connected. You can share moments with your family in just a few taps. It might seem like a lot of steps at first, but with practice, it becomes second nature. Remember, mistakes are normal. If you tap the wrong thing, nothing breaks permanently. You can always go back and start over.</p>
+<h2>1. Taking a photo</h2>
+<p>Most smartphones have a camera built in.</p>
+<ol class="steps">
+<li>Look for the <strong>Camera app</strong>. It usually looks like a small, simple camera icon.</li>
+<li>Tap the icon to open the camera.</li>
+<li>Point your phone at what you want to photograph.</li>
+<li>Tap the large round button at the bottom of the screen to take the picture.</li>
+</ol>
+<h2>2. Finding your photo</h2>
+<p>Once you take a picture, your phone saves it.</p>
+<ol class="steps">
+<li>Go back to your main screen (the home screen).</li>
+<li>Look for the <strong>Gallery</strong> or <strong>Photos app</strong>. The icon often looks like a flower or a colorful pinwheel.</li>
+<li>Tap the icon to open it.</li>
+<li>You see your newest photo at the bottom or top of the list. Tap the photo to view it full size.</li>
+</ol>
+<h2>3. What is "the cloud"?</h2>
+<p>You might hear people say their photos are in <strong>the cloud</strong>. The cloud is simply a safe storage space on the internet. Instead of keeping a photo only inside your physical phone, a copy is sent over the internet to a secure computer building. This means if you lose your phone, your photos are still safe in the cloud. You do not need to worry about doing this yourself right now; most phones do it automatically.</p>
+<h2>4. Sharing your photo</h2>
+<p>Now you can send the picture to a family member.</p>
+<ol class="steps">
+<li>While viewing your photo in the Gallery, look for the <strong>Share button</strong>. It often looks like a box with an arrow pointing up, or three dots connected by lines.</li>
+<li>Tap the Share button.</li>
+<li>A menu appears. Choose the messaging app you normally use to talk to your family (like Messages or WhatsApp).</li>
+<li>Select the name of the person you want to send it to.</li>
+<li>Tap the <strong>Send button</strong>. It usually looks like a paper airplane or an arrow.</li>
+</ol>
+<h2>Try it yourself</h2>
+<ol class="steps">
+<li>Take a picture of something nearby, like a cup of coffee or a book.</li>
+<li>Open your Photos or Gallery app to find the picture.</li>
+<li>Use the Share button to send it to a family member or friend.</li>
+<li>Add a short message saying "I am practicing sending photos!"</li>
+</ol>
+<hr>
+<h2>Printable Summary: Sending Photos</h2>
+<p><strong>To take a photo:</strong></p>
+<ol class="steps">
+<li>Open the Camera app.</li>
+<li>Tap the large round button to take the picture.</li>
+</ol>
+<p><strong>To find and share:</strong></p>
+<ol class="steps">
+<li>Open the Gallery or Photos app.</li>
+<li>Tap your new photo to see it.</li>
+<li>Tap the Share button (a box with an arrow or connected dots).</li>
+<li>Choose your messaging app.</li>
+<li>Pick a person and tap Send (the paper airplane icon).</li>
+</ol>
+<p><strong>What is the cloud?</strong> The cloud is a safe storage space on the internet. It keeps a backup of your photos so they are not lost if your phone breaks. Mistakes are normal, and nothing you tap will break your phone permanently!</p>
+<hr>
+<p><strong>Approval:</strong></p>
+<ul>
+<li><strong>Reviewer:</strong> Quill</li>
+<li><strong>Date:</strong> 2026-07-28</li>
+<li><strong>Checklist Version:</strong> v1</li>
+</ul>
+<div class="completion-box">
+  <button id="markCompleteBtn" class="btn-complete">Mark Lesson as Complete</button>
+</div>
+</main>
+<footer class="site">
+  <p><strong>Evergreen Digital Academy</strong></p>
+  <p>Lessons are free to read, print, and share (CC BY-SA 4.0) · <span class="nolink"><a href="../about.html">About this project</a></span></p>
+</footer>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: "en", layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, "google_translate_element");
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+(function () {
+  var box = document.getElementById('textsize');
+  if (box) {
+    box.hidden = false;
+    var saved = localStorage.getItem('ega-size') || '';
+    if (saved) document.documentElement.classList.add(saved);
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      document.documentElement.classList.remove('size-lg', 'size-xl');
+      if (b.dataset.size) document.documentElement.classList.add(b.dataset.size);
+      localStorage.setItem('ega-size', b.dataset.size);
+    });
+  }
+  
+  var path = window.location.pathname.split("/").pop();
+  var btn = document.getElementById('markCompleteBtn');
+  if (btn) {
+    if (localStorage.getItem('completed-' + path)) {
+      btn.textContent = 'Lesson Completed ✓';
+      btn.disabled = true;
+    }
+    btn.addEventListener('click', function() {
+      localStorage.setItem('completed-' + path, 'true');
+      btn.textContent = 'Lesson Completed ✓';
+      btn.disabled = true;
+    });
+  }
+})();
+</script>
+</body>
+</html>

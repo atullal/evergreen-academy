@@ -58,3 +58,9 @@ Now you can send the picture to a family member.
 
 **What is the cloud?**
 The cloud is a safe storage space on the internet. It keeps a backup of your photos so they are not lost if your phone breaks. Mistakes are normal, and nothing you tap will break your phone permanently!
+
+---
+**Approval:**
+- **Reviewer:** Quill
+- **Date:** 2026-07-28
+- **Checklist Version:** v1
