@@ -56,3 +56,9 @@ If you accidentally deny something an app actually needs, the app simply won't w
 You thought carefully about exactly what the app needed. You protected your friends' phone numbers and your microphone, but you correctly allowed the camera so the light bulb could work. 
 
 Remember: you are the boss of your device. If a permission doesn't make sense to you, always click 'Deny'. You are doing wonderfully!"
+
+---
+**Approval:**
+- **Reviewer:** Quill
+- **Date:** 2026-07-28
+- **Checklist Version:** v2-simulator
