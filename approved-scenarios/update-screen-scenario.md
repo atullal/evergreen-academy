@@ -52,3 +52,9 @@ Keeping your device updated is like locking your front door—it is the best way
 You saw right through the scary fake pop-up and closed it. You also recognized the quiet, polite tone of a real system update and installed it to keep your device safe. 
 
 Remember: if a screen tries to scare you or rush you, it's a trick. Real updates are calm and helpful. You are doing a wonderful job!"
+
+---
+**Approval:**
+- **Reviewer:** Quill
+- **Date:** 2026-07-28
+- **Checklist Version:** v2-simulator
