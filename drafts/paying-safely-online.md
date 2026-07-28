@@ -2,14 +2,14 @@
 
 Shopping online is very convenient, but it is normal to feel nervous about typing your payment details into a computer. Today, we will learn how to make safe choices when buying things on the internet and how to spot common payment tricks.
 
-## Spotting a Secure Checkout
+## Reaching the Real Store
 
-When you are ready to pay for something on a website, you need to make sure the connection is safe.
+When you are ready to buy something or log into an account, you need to make sure you are in the right place. Scammers often build fake websites that look exactly like the real ones.
 
-1. Look at the very top of your screen, where the website address is written (like www.example.com).
-2. Look for a tiny picture of a closed padlock next to the address.
-3. This **Padlock Icon** means the website is using a special scramble to protect your information. 
-4. If you do not see a padlock, or if your browser says "Not Secure", do not type your payment details.
+1. **Avoid email links:** Never click on a link in an unexpected email or text message to reach a store or bank. 
+2. **Go there yourself:** It is always safer to use a search engine (like Google) to find the store, or type the website address directly if you know it. 
+3. **Check the address:** Look at the very top of your screen where the website address is written. Make sure the name is spelled correctly (for example, make sure it says `amazon.com` and not `amaz0n-update.com`).
+4. If something looks slightly off or misspelled, close the page and do not type your payment details.
 
 ## Credit Cards vs. Bank Transfers
 
@@ -40,16 +40,16 @@ If you see these three things, stop. Verify the situation by calling a known, tr
 
 ## Try it yourself
 
-1. Open your internet browser and go to a website you trust, like a local store or your bank.
-2. Look at the top of the screen next to the website address.
-3. Find the small padlock icon.
+1. Open your internet browser.
+2. Instead of using a link, practice typing the name of a store you trust into your search engine.
+3. Click the correct result and look at the address at the top of the screen to verify it is spelled right.
 4. Practice the golden rule: say out loud, "If it is urgent, secret, and asks for money, I will stop and ask for help."
 
 ---
 
 ## Printable Summary: Paying Safely Online
 
-* **Secure Checkout:** Always look for the small padlock icon next to the website address before typing payment details.
+* **Reaching the Real Store:** Avoid clicking links in emails or texts to go to stores or banks. Find the website yourself and check the address bar for sneaky spelling mistakes.
 * **Credit Cards:** The safest way to pay online. They offer better protection against fraud than debit cards or bank transfers.
 * **The Gift Card Rule:** Gift cards are only for gifts. No legitimate business or government agency will ever demand payment in gift cards.
 * **The Golden Rule:** If a message or phone call involves Urgency, Secrecy, and Money, it is a scam. Stop, hang up, and ask someone you trust.
