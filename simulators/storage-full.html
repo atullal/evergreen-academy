@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice Photo Gallery Simulator — Evergreen Digital Academy</title>
+<meta name="description" content="A safe sandbox to practice making space by deleting unwanted photos.">
+<link rel="stylesheet" href="../style.css">
+<style>
+  .simulator-container {
+    max-width: 600px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f9f9f9;
+    padding: 20px;
+  }
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+  @media(max-width: 480px) {
+    .photo-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .photo-item {
+    aspect-ratio: 1 / 1;
+    background-color: #ddd;
+    border: 3px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    font-size: 1em;
+    color: #444;
+    user-select: none;
+    transition: all 0.2s;
+  }
+  .photo-item:hover {
+    opacity: 0.9;
+  }
+  .photo-item.selected {
+    border-color: #007bff;
+    background-color: #cce5ff;
+  }
+  .photo-item.selected::after {
+    content: "✓";
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: #007bff;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  .photo-item.deleted {
+    display: none;
+  }
+
+  /* Distinct visual styles for the photos */
+  #photo-1 { background-color: #ffd1dc; } /* Family */
+  #photo-2 { background-color: #aaa; filter: blur(2px); } /* Blurry */
+  #photo-3 { background-color: #444; color: #fff; } /* Dark pocket */
+  #photo-4 { background-color: #ffdead; } /* Dog */
+  #photo-5 { background-color: #c1e1c1; } /* Flower Dup */
+  #photo-6 { background-color: #a8e6cf; font-weight: bold; } /* Flower Best */
+
+  .action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .btn-delete, .btn-undo {
+    padding: 12px 20px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 1;
+    text-align: center;
+  }
+  .btn-delete {
+    background-color: #d9534f;
+    color: white;
+  }
+  .btn-delete:hover {
+    background-color: #c9302c;
+  }
+  .btn-undo {
+    background-color: #007bff;
+    color: white;
+  }
+  .btn-undo:hover {
+    background-color: #0056b3;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  .modal-overlay.active {
+    display: flex;
+  }
+  .modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 500px;
+    text-align: center;
+    font-size: 1.2em;
+  }
+  .modal-content h3 {
+    margin-top: 0;
+  }
+  .modal-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    background: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .modal-btn:hover {
+    background: #004494;
+  }
+  .banner {
+    background-color: #e2f0d9;
+    border: 2px solid #5cb85c;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="header-container">
+    <div>
+      <div class="brand"><a href="../index.html">Evergreen Digital Academy</a></div>
+      <div class="tagline">Free, patient technology lessons for older adults</div>
+    </div>
+    <div class="toolbar">
+      <div id="google_translate_element"></div>
+      <div class="textsize" id="textsize" hidden>
+        <button class="b1" data-size="" aria-label="Normal text size">A</button>
+        <button class="b2" data-size="size-lg" aria-label="Large text size">A</button>
+        <button class="b3" data-size="size-xl" aria-label="Largest text size">A</button>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="crumbs"><a href="../index.html">&larr; Back to home</a></nav>
+<main>
+  <h1>Practice Photo Gallery</h1>
+  <div class="banner">
+    <strong>Your device storage is full! Let's make some space.</strong> Look at the photos below. Tap the ones that are blurry or mistakes, and tap 'Delete'. Don't worry—you cannot lose real photos here!
+  </div>
+
+  <div class="simulator-container">
+    <div class="photo-grid" id="gallery">
+      <!-- Keepers: 1, 4, 6. Junk: 2, 3, 5 -->
+      <div class="photo-item" id="photo-1" data-type="keeper" onclick="toggleSelect(this)">Family Birthday Party</div>
+      <div class="photo-item" id="photo-2" data-type="junk" onclick="toggleSelect(this)">Blurry Smear</div>
+      <div class="photo-item" id="photo-3" data-type="junk" onclick="toggleSelect(this)">Dark Pocket/Foot</div>
+      <div class="photo-item" id="photo-4" data-type="keeper" onclick="toggleSelect(this)">Pet Dog (Clear)</div>
+      <div class="photo-item" id="photo-5" data-type="junk" onclick="toggleSelect(this)">Garden Flower (Duplicate)</div>
+      <div class="photo-item" id="photo-6" data-type="keeper" onclick="toggleSelect(this)">Garden Flower (Best Shot)</div>
+    </div>
+
+    <div class="action-buttons">
+      <button class="btn-delete" onclick="deleteSelected()">🗑️ Delete Selected Photos</button>
+      <button class="btn-undo" onclick="undoDelete()">↩️ Undo (Recently Deleted)</button>
+    </div>
+  </div>
+</main>
+
+<div class="modal-overlay" id="feedback-modal">
+  <div class="modal-content">
+    <h3 id="feedback-title"></h3>
+    <p id="feedback-text"></p>
+    <button class="modal-btn" onclick="closeModal()">Continue</button>
+  </div>
+</div>
+
+<footer class="site">
+  <p><strong>Evergreen Digital Academy</strong></p>
+  <p>Lessons are free to read, print, and share (CC BY-SA 4.0) · <span class="nolink"><a href="../about.html">About this project</a></span></p>
+</footer>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+  // Text size logic
+  (function () {
+    var box = document.getElementById('textsize');
+    if (box) {
+      box.hidden = false;
+      var saved = localStorage.getItem('ega-size') || '';
+      if (saved) document.documentElement.classList.add(saved);
+      box.addEventListener('click', function (e) {
+        var b = e.target.closest('button'); if (!b) return;
+        document.documentElement.classList.remove('size-lg', 'size-xl');
+        if (b.dataset.size) document.documentElement.classList.add(b.dataset.size);
+        localStorage.setItem('ega-size', b.dataset.size);
+      });
+    }
+  })();
+
+  // Simulator logic
+  function toggleSelect(element) {
+    element.classList.toggle('selected');
+  }
+
+  function showModal(title, titleColor, textHTML) {
+    var modal = document.getElementById('feedback-modal');
+    var titleEl = document.getElementById('feedback-title');
+    var textEl = document.getElementById('feedback-text');
+    titleEl.textContent = title;
+    titleEl.style.color = titleColor;
+    textEl.innerHTML = textHTML;
+    modal.classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('feedback-modal').classList.remove('active');
+  }
+
+  function deleteSelected() {
+    var photos = document.querySelectorAll('.photo-item');
+    var selected = document.querySelectorAll('.photo-item.selected');
+    
+    if (selected.length === 0) {
+      showModal("No photos selected", "#333", "Please tap on some photos to select them before clicking Delete.");
+      return;
+    }
+
+    var deletedKeeper = false;
+    
+    // Hide selected and check if any were keepers
+    selected.forEach(function(photo) {
+      if (photo.getAttribute('data-type') === 'keeper') {
+        deletedKeeper = true;
+      }
+      photo.classList.remove('selected');
+      photo.classList.add('deleted');
+    });
+
+    // Count how many junk photos are currently deleted
+    var junkDeletedCount = document.querySelectorAll('.photo-item.deleted[data-type="junk"]').length;
+    var keeperDeletedCount = document.querySelectorAll('.photo-item.deleted[data-type="keeper"]').length;
+
+    if (deletedKeeper) {
+      showModal("Oops! You deleted a nice, clear family photo.", "#d9534f", "In real life, deleting a precious memory can feel scary. But <strong>here in the simulator, nothing is permanently lost!</strong><br><br>Even on your real phone, when you delete a photo, it doesn't vanish immediately. It goes to a safe place called the <strong>'Recently Deleted'</strong> folder for about a month. If you make a mistake, you can always go into that folder and put the picture back.<br><br>Try clicking the blue <strong>[ ↩️ Undo (Recently Deleted) ]</strong> button to bring the photo back, and then try selecting only the blurry ones.");
+    } else if (junkDeletedCount < 3) {
+      showModal("You are being very careful, which is great!", "#333", "However, your storage is still a bit too full. To make room for new memories, we need to let go of the accidents. Try to find the photo that is completely blurry, the picture of the foot, and the extra picture of the flower.<br><br>Remember, it's safe to practice here. Let's try again!");
+    } else if (junkDeletedCount === 3 && keeperDeletedCount === 0) {
+      showModal("Wonderful job!", "#5cb85c", "You successfully cleared out the blurry mistakes and duplicates, leaving plenty of room for new, beautiful memories.<br><br>Remember: managing your storage is like cleaning out a real closet. It's a normal part of owning a device, and the 'Recently Deleted' folder is always there to catch any accidental mistakes. You did great!");
+    }
+  }
+
+  function undoDelete() {
+    var deletedPhotos = document.querySelectorAll('.photo-item.deleted');
+    if (deletedPhotos.length === 0) {
+      // Nothing to undo
+      return;
+    }
+    deletedPhotos.forEach(function(photo) {
+      photo.classList.remove('deleted');
+      photo.classList.remove('selected'); // ensure it's unselected
+    });
+    showModal("Photos Restored", "#007bff", "Your deleted photos have been brought back from the 'Recently Deleted' folder. You can try selecting the junk photos again!");
+  }
+</script>
+</body>
+</html>
