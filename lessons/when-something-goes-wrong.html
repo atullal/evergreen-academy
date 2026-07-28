@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 10: When Something Goes Wrong — Evergreen Digital Academy</title>
+<meta name="description" content="Free, patient technology lessons for older adults.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site">
+  <div class="header-container">
+    <div>
+      <div class="brand"><a href="../index.html">Evergreen Digital Academy</a></div>
+      <div class="tagline">Free, patient technology lessons for older adults</div>
+    </div>
+    <div class="toolbar">
+      <div id="google_translate_element"></div>
+      <div class="textsize" id="textsize" hidden>
+        <button class="b1" data-size="" aria-label="Normal text size">A</button>
+        <button class="b2" data-size="size-lg" aria-label="Large text size">A</button>
+        <button class="b3" data-size="size-xl" aria-label="Largest text size">A</button>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="crumbs"><a href="../index.html">&larr; Back to all lessons</a></nav>
+<main class="lesson-content">
+<h1>Lesson 10: When Something Goes Wrong</h1>
+<p>Even the most advanced computers and phones get confused sometimes. When a screen freezes or an app stops working, it is normal to worry that you pressed the wrong button. Please remember: you did not break it, and it is rarely permanent. Today, we will learn two simple tools to fix common problems.</p>
+<h2>The Magic of Restarting</h2>
+<p>If a device is acting strangely, the best first step is to turn it off and turn it back on.</p>
+<ol class="steps">
+<li>A <strong>Restart</strong> means turning your phone or computer completely off, waiting a few seconds, and turning it back on.</li>
+<li>Think of your device like a busy kitchen. If you are cooking a big meal, the counters get messy and it is hard to work.</li>
+<li>Restarting is like wiping the counters clean so you can start fresh. It gives the computer a chance to clear its memory and try again.</li>
+<li>Using restart is a normal, healthy tool for your devices. It does not mean you made a mistake.</li>
+<li>Turning off a device usually involves holding the power button on the side, or sometimes holding the power button and a volume button at the exact same time.</li>
+<li>Because every phone is slightly different, the best thing to do is ask a trusted family member or friend to show you the specific "restart" buttons for your phone the next time you see them.</li>
+</ol>
+<h2>Making Room: Storage Full</h2>
+<p>Sometimes, your device might show a message that says "Storage Almost Full".</p>
+<ol class="steps">
+<li><strong>Storage</strong> is the physical space inside your device where it keeps your pictures, messages, and apps. Think of it like a filing cabinet or a closet.</li>
+<li>When the closet is completely packed, you cannot put anything new inside. Your phone will not be able to take new pictures or receive new messages.</li>
+<li>To fix this, you just need to clear out some space.</li>
+<li>The easiest way to make space is to delete things you no longer need, like old photographs and long videos.</li>
+<li><strong>Safety tip:</strong> Deleting things can feel scary! If you need to do a major clean-up to make space, ask a family member or friend to sit with you and help.</li>
+<li>Do not worry if you make a mistake: most phones have a "Recently Deleted" or "Trash" folder where deleted photos wait for about a month before disappearing forever.</li>
+</ol>
+<h2>Try it yourself</h2>
+<ol class="steps">
+<li>The next time you see a trusted friend or family member, ask them: "Can you show me the exact buttons to restart my phone?"</li>
+<li>Write those steps down on a small piece of paper.</li>
+<li>Open your photos app.</li>
+<li>Find one blurry picture or a picture of something you no longer need (like a receipt from last year).</li>
+<li>Delete that one picture to practice making space in your storage. Remember, it goes to a "Recently Deleted" folder, so you cannot permanently break anything!</li>
+</ol>
+<hr>
+<h2>Printable Summary: When Something Goes Wrong</h2>
+<p><em> <strong>You did not break it:</strong> Frozen screens and strange glitches are normal. They are not your fault. </em> <strong>Restart:</strong> Turning a device completely off and back on again. It is a normal tool to give the device a fresh start, like cleaning a messy kitchen counter. <em> <strong>Storage:</strong> The physical space inside your phone where things are kept, like a closet. </em> <strong>Storage Full:</strong> This means the closet is full. You cannot save new things until you remove old things. * <strong>How to fix full storage:</strong> The easiest way to make room is to find and delete old, blurry, or unwanted photos and videos. If you need to do a lot of cleaning, ask someone you trust for help. Mistakes are okay; deleted photos usually stay in a "Recently Deleted" folder for a month!</p>
+<hr>
+<p><strong>Approval:</strong></p>
+<ul>
+<li><strong>Reviewer:</strong> Quill</li>
+<li><strong>Date:</strong> 2026-07-28</li>
+<li><strong>Checklist Version:</strong> v1</li>
+</ul>
+<div class="completion-box">
+  <button id="markCompleteBtn" class="btn-complete">Mark Lesson as Complete</button>
+</div>
+</main>
+<footer class="site">
+  <p><strong>Evergreen Digital Academy</strong></p>
+  <p>Lessons are free to read, print, and share (CC BY-SA 4.0) · <span class="nolink"><a href="../about.html">About this project</a></span></p>
+</footer>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: "en", layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, "google_translate_element");
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+(function () {
+  var box = document.getElementById('textsize');
+  if (box) {
+    box.hidden = false;
+    var saved = localStorage.getItem('ega-size') || '';
+    if (saved) document.documentElement.classList.add(saved);
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      document.documentElement.classList.remove('size-lg', 'size-xl');
+      if (b.dataset.size) document.documentElement.classList.add(b.dataset.size);
+      localStorage.setItem('ega-size', b.dataset.size);
+    });
+  }
+  
+  var path = window.location.pathname.split("/").pop();
+  var btn = document.getElementById('markCompleteBtn');
+  if (btn) {
+    if (localStorage.getItem('completed-' + path)) {
+      btn.textContent = 'Lesson Completed ✓';
+      btn.disabled = true;
+    }
+    btn.addEventListener('click', function() {
+      localStorage.setItem('completed-' + path, 'true');
+      btn.textContent = 'Lesson Completed ✓';
+      btn.disabled = true;
+    });
+  }
+})();
+</script>
+</body>
+</html>
