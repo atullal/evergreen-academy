@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 9: Email Confidently — Evergreen Digital Academy</title>
+<meta name="description" content="Free, patient technology lessons for older adults.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site">
+  <div class="header-container">
+    <div>
+      <div class="brand"><a href="../index.html">Evergreen Digital Academy</a></div>
+      <div class="tagline">Free, patient technology lessons for older adults</div>
+    </div>
+    <div class="toolbar">
+      <div id="google_translate_element"></div>
+      <div class="textsize" id="textsize" hidden>
+        <button class="b1" data-size="" aria-label="Normal text size">A</button>
+        <button class="b2" data-size="size-lg" aria-label="Large text size">A</button>
+        <button class="b3" data-size="size-xl" aria-label="Largest text size">A</button>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="crumbs"><a href="../index.html">&larr; Back to all lessons</a></nav>
+<main class="lesson-content">
+<h1>Lesson 9: Email Confidently</h1>
+<p>Email is a wonderful way to stay in touch with friends, family, and businesses. It is like regular mail, but it arrives almost instantly. It is normal to feel nervous about doing something wrong, but simply opening and reading an email will not break your computer or phone. Today, we will learn how to use email safely and confidently.</p>
+<h2>Reading and Replying</h2>
+<p>When you open your email app or website, you will see a list of messages.</p>
+<ol class="steps">
+<li>Your <strong>Inbox</strong> is the main folder where your new emails arrive, just like a physical mailbox outside your house.</li>
+<li>Click or tap on a message in your Inbox to open and read it.</li>
+<li>If you want to answer the person, look for a button that says <strong>Reply</strong>, or a curved arrow pointing to the left.</li>
+<li>A <strong>Reply</strong> is a message that goes straight back to the person who wrote to you.</li>
+<li>Click Reply, type your answer into the empty box that appears, and press the Send button.</li>
+</ol>
+<h2>Safe Attachments</h2>
+<p>Sometimes, people include extra items with their emails.</p>
+<ol class="steps">
+<li>An <strong>Attachment</strong> is a separate file, like a photograph or a document, connected to the email. You will often see a paperclip icon next to emails that have attachments.</li>
+<li>Attachments are great for sharing family photos or receiving receipts.</li>
+<li>However, bad attachments from strangers can hide harmful computer programs.</li>
+<li>Only open an attachment if you know the person who sent it <em>and</em> you were expecting them to send you a file.</li>
+<li>If a friend sends you a strange attachment out of nowhere, do not open it. Call them on the phone to ask if they really sent it.</li>
+</ol>
+<h2>Spotting Phishing Emails</h2>
+<p>Criminals often use email to try and trick you.</p>
+<ol class="steps">
+<li><strong>Phishing</strong> is when a scammer sends a fake email pretending to be a real company, like your bank, the post office, or a popular store.</li>
+<li>The goal of phishing is to make you click a link in the email and type in your password or credit card number.</li>
+<li>Remember our golden rule: if the email uses <strong>Urgency</strong> (like saying your account will be permanently closed today if you do not act), <strong>Secrecy</strong>, or demands <strong>Money</strong>, it is a scam.</li>
+<li>Never click links in unexpected emails. If an email claims there is a problem with your bank, close the email. Open your internet browser and go to the bank's website yourself to check.</li>
+</ol>
+<h2>Try it yourself</h2>
+<ol class="steps">
+<li>Open your email Inbox.</li>
+<li>Find an email from a family member or a close friend.</li>
+<li>Click the Reply button, type a short message like, "Hello, I am practicing my email skills today!", and send it.</li>
+<li>Look at the other emails in your inbox. Practice spotting any that try to create a false sense of urgency.</li>
+</ol>
+<hr>
+<h2>Printable Summary: Email Confidently</h2>
+<p><em> <strong>Inbox:</strong> The place where your new emails arrive. </em> <strong>Reply:</strong> A button that lets you send an answer directly back to the person who emailed you. <em> <strong>Attachment:</strong> An extra file (like a photo) connected to an email, often shown with a paperclip icon. Only open attachments if you know the sender and expect the file. </em> <strong>Phishing:</strong> A trick email pretending to be a real company. They want you to click a link and share private details. * <strong>Stay Safe:</strong> Do not click links in unexpected emails. If an email says it is urgent, stop. Go to the website yourself instead of using the link.</p>
+<hr>
+<p><strong>Approval:</strong></p>
+<ul>
+<li><strong>Reviewer:</strong> Quill</li>
+<li><strong>Date:</strong> 2026-07-28</li>
+<li><strong>Checklist Version:</strong> v1</li>
+</ul>
+<div class="completion-box">
+  <button id="markCompleteBtn" class="btn-complete">Mark Lesson as Complete</button>
+</div>
+</main>
+<footer class="site">
+  <p><strong>Evergreen Digital Academy</strong></p>
+  <p>Lessons are free to read, print, and share (CC BY-SA 4.0) · <span class="nolink"><a href="../about.html">About this project</a></span></p>
+</footer>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: "en", layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, "google_translate_element");
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+(function () {
+  var box = document.getElementById('textsize');
+  if (box) {
+    box.hidden = false;
+    var saved = localStorage.getItem('ega-size') || '';
+    if (saved) document.documentElement.classList.add(saved);
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      document.documentElement.classList.remove('size-lg', 'size-xl');
+      if (b.dataset.size) document.documentElement.classList.add(b.dataset.size);
+      localStorage.setItem('ega-size', b.dataset.size);
+    });
+  }
+  
+  var path = window.location.pathname.split("/").pop();
+  var btn = document.getElementById('markCompleteBtn');
+  if (btn) {
+    if (localStorage.getItem('completed-' + path)) {
+      btn.textContent = 'Lesson Completed ✓';
+      btn.disabled = true;
+    }
+    btn.addEventListener('click', function() {
+      localStorage.setItem('completed-' + path, 'true');
+      btn.textContent = 'Lesson Completed ✓';
+      btn.disabled = true;
+    });
+  }
+})();
+</script>
+</body>
+</html>
