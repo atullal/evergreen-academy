@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice App Install Simulator — Evergreen Digital Academy</title>
+<meta name="description" content="A safe sandbox to practice thinking critically about app permissions.">
+<link rel="stylesheet" href="../style.css">
+<style>
+  .simulator-container {
+    max-width: 400px;
+    margin: 20px auto;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    background: #000;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+  }
+  .phone-screen {
+    flex: 1;
+    background: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: relative;
+  }
+  .app-icon {
+    font-size: 5em;
+    margin-bottom: 10px;
+  }
+  .app-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .permission-popup {
+    background: #fff;
+    color: #333;
+    width: 80%;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .popup-text {
+    padding: 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+  .popup-buttons {
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+  .popup-btn {
+    flex: 1;
+    padding: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  .btn-deny {
+    color: #d9534f;
+    border-right: 1px solid #ccc;
+  }
+  .btn-deny:hover {
+    background: #fdf0f0;
+  }
+  .btn-allow {
+    color: #007bff;
+  }
+  .btn-allow:hover {
+    background: #f0f8ff;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  .modal-overlay.active {
+    display: flex;
+  }
+  .modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 450px;
+    text-align: center;
+    font-size: 1.2em;
+    color: #333;
+  }
+  .modal-content h3 {
+    margin-top: 0;
+  }
+  .modal-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    background: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .modal-btn:hover {
+    background: #004494;
+  }
+  .banner {
+    background-color: #e2f0d9;
+    border: 2px solid #5cb85c;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="header-container">
+    <div>
+      <div class="brand"><a href="../index.html">Evergreen Digital Academy</a></div>
+      <div class="tagline">Free, patient technology lessons for older adults</div>
+    </div>
+    <div class="toolbar">
+      <div id="google_translate_element"></div>
+      <div class="textsize" id="textsize" hidden>
+        <button class="b1" data-size="" aria-label="Normal text size">A</button>
+        <button class="b2" data-size="size-lg" aria-label="Large text size">A</button>
+        <button class="b3" data-size="size-xl" aria-label="Largest text size">A</button>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="crumbs"><a href="../index.html">&larr; Back to home</a></nav>
+<main>
+  <h1>Practice App Install</h1>
+  <div class="banner">
+    <strong>When you open a new app, it might ask for permission to see your personal information.</strong> You are in charge—you get to say yes or no! Let's practice with a new Flashlight app. You cannot break anything here!
+  </div>
+
+  <div class="simulator-container">
+    <div class="phone-screen">
+      <div class="app-icon">🔦</div>
+      <div class="app-title">Super Bright Flashlight</div>
+      
+      <div class="permission-popup">
+        <div class="popup-text" id="permission-text">
+          Super Bright Flashlight would like to access your Contacts.
+        </div>
+        <div class="popup-buttons">
+          <button class="popup-btn btn-deny" onclick="handleAction('deny')">❌ Deny</button>
+          <button class="popup-btn btn-allow" onclick="handleAction('allow')">✅ Allow</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="modal-overlay" id="feedback-modal">
+  <div class="modal-content">
+    <h3 id="feedback-title"></h3>
+    <p id="feedback-text"></p>
+    <button class="modal-btn" onclick="closeModal()">Continue</button>
+  </div>
+</div>
+
+<footer class="site">
+  <p><strong>Evergreen Digital Academy</strong></p>
+  <p>Lessons are free to read, print, and share (CC BY-SA 4.0) · <span class="nolink"><a href="../about.html">About this project</a></span></p>
+</footer>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+  // Text size logic
+  (function () {
+    var box = document.getElementById('textsize');
+    if (box) {
+      box.hidden = false;
+      var saved = localStorage.getItem('ega-size') || '';
+      if (saved) document.documentElement.classList.add(saved);
+      box.addEventListener('click', function (e) {
+        var b = e.target.closest('button'); if (!b) return;
+        document.documentElement.classList.remove('size-lg', 'size-xl');
+        if (b.dataset.size) document.documentElement.classList.add(b.dataset.size);
+        localStorage.setItem('ega-size', b.dataset.size);
+      });
+    }
+  })();
+
+  // Simulator logic
+  var currentChallenge = 1;
+  var permissionText = document.getElementById('permission-text');
+
+  function updateUI() {
+    if (currentChallenge === 1) {
+      permissionText.textContent = "Super Bright Flashlight would like to access your Contacts.";
+    } else if (currentChallenge === 2) {
+      permissionText.textContent = "Super Bright Flashlight would like to access your Microphone.";
+    } else if (currentChallenge === 3) {
+      permissionText.textContent = "Super Bright Flashlight would like to access your Camera.";
+    }
+  }
+
+  function showModal(title, titleColor, textHTML) {
+    var modal = document.getElementById('feedback-modal');
+    var titleEl = document.getElementById('feedback-title');
+    var textEl = document.getElementById('feedback-text');
+    titleEl.textContent = title;
+    titleEl.style.color = titleColor;
+    textEl.innerHTML = textHTML;
+    modal.classList.add('active');
+  }
+
+  function handleAction(action) {
+    if (currentChallenge === 1 || currentChallenge === 2) {
+      if (action === 'allow') {
+        showModal("Oops! You clicked 'Allow' for that one.", "#d9534f", "In the real world, an app could use that to read your address book or listen to you. But <strong>here in the simulator, your privacy is completely safe!</strong><br><br>When an app asks for permission, ask yourself: 'Does this app really need this to do its job?' A flashlight app only makes light. It does not need to call your friends, and it does not need to hear your voice. It is always safest to click 'Deny' if it doesn't make sense. Let's try the next one!");
+        currentChallenge++;
+      } else if (action === 'deny') {
+        showModal("Great job!", "#5cb85c", "You correctly denied that permission. A flashlight app has no business accessing that information. Let's move on to the next request.");
+        currentChallenge++;
+      }
+    } else if (currentChallenge === 3) {
+      if (action === 'deny') {
+        showModal("You chose 'Deny'. It is always a great instinct to protect your privacy!", "#333", "However, this one is a little tricky. On most phones, the flashlight bulb is physically connected to the camera. So, a flashlight app <em>does</em> need permission to use the camera, just so it can turn the bulb on!<br><br>If you accidentally deny something an app actually needs, the app simply won't work, and you can always change it later in your Settings. You didn't break anything. Let's try again!");
+        // Stay on challenge 3 to let them try again.
+      } else if (action === 'allow') {
+        showModal("Fantastic job!", "#5cb85c", "You thought carefully about exactly what the app needed. You protected your friends' phone numbers and your microphone, but you correctly allowed the camera so the light bulb could work.<br><br>Remember: you are the boss of your device. If a permission doesn't make sense to you, always click 'Deny'. You are doing wonderfully!");
+        currentChallenge = 1; // reset if they want to play again
+      }
+    }
+  }
+
+  function closeModal() {
+    document.getElementById('feedback-modal').classList.remove('active');
+    updateUI();
+  }
+
+  // Initialize
+  updateUI();
+</script>
+</body>
+</html>
