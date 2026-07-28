@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice Checkout Simulator — Evergreen Digital Academy</title>
+<meta name="description" content="A safe sandbox to practice checking website addresses and picking safe payment methods.">
+<link rel="stylesheet" href="../style.css">
+<style>
+  .simulator-container {
+    max-width: 600px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f9f9f9;
+    overflow: hidden;
+  }
+  .browser-bar {
+    background: #e0e0e0;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+  }
+  .browser-controls {
+    display: flex;
+    gap: 5px;
+    margin-right: 15px;
+  }
+  .browser-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #bbb;
+  }
+  .browser-url {
+    background: #fff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    flex: 1;
+    font-family: monospace;
+    font-size: 1.2em;
+    color: #333;
+    border: 1px solid #ccc;
+  }
+  .page-content {
+    padding: 30px;
+    background: #fff;
+  }
+  .cart-summary {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  .payment-options {
+    margin-bottom: 30px;
+  }
+  .payment-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+  }
+  .payment-option input {
+    margin-right: 15px;
+    transform: scale(1.5);
+  }
+  .action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .btn-submit, .btn-leave {
+    padding: 12px 20px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 1;
+  }
+  .btn-submit {
+    background-color: #5cb85c;
+    color: white;
+  }
+  .btn-submit:hover {
+    background-color: #449d44;
+  }
+  .btn-leave {
+    background-color: #d9534f;
+    color: white;
+  }
+  .btn-leave:hover {
+    background-color: #c9302c;
+  }
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  .modal-overlay.active {
+    display: flex;
+  }
+  .modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 500px;
+    text-align: center;
+    font-size: 1.2em;
+  }
+  .modal-content h3 {
+    margin-top: 0;
+  }
+  .modal-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    background: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .modal-btn:hover {
+    background: #004494;
+  }
+  .banner {
+    background-color: #e2f0d9;
+    border: 2px solid #5cb85c;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="header-container">
+    <div>
+      <div class="brand"><a href="../index.html">Evergreen Digital Academy</a></div>
+      <div class="tagline">Free, patient technology lessons for older adults</div>
+    </div>
+    <div class="toolbar">
+      <div id="google_translate_element"></div>
+      <div class="textsize" id="textsize" hidden>
+        <button class="b1" data-size="" aria-label="Normal text size">A</button>
+        <button class="b2" data-size="size-lg" aria-label="Large text size">A</button>
+        <button class="b3" data-size="size-xl" aria-label="Largest text size">A</button>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="crumbs"><a href="../index.html">&larr; Back to home</a></nav>
+<main>
+  <h1>Practice Checkout</h1>
+  <div class="banner">
+    <strong>Welcome to the Practice Checkout!</strong> No real money is used here. Your goal is to check if this store is real, and if it is, pick the safest way to pay.
+  </div>
+
+  <div class="simulator-container">
+    <div class="browser-bar">
+      <div class="browser-controls">
+        <div class="browser-dot"></div>
+        <div class="browser-dot"></div>
+        <div class="browser-dot"></div>
+      </div>
+      <div class="browser-url" id="url-display">www.amaz0n-update-store.com</div>
+    </div>
+    <div class="page-content">
+      <h2>Secure Checkout</h2>
+      <div class="cart-summary">
+        <strong>Shopping Cart:</strong><br>
+        1x Coffee Maker - $45.00<br>
+        <em>Total: $45.00</em>
+      </div>
+      
+      <div class="payment-options">
+        <h3>How would you like to pay?</h3>
+        <label class="payment-option">
+          <input type="radio" name="payment" value="credit"> Credit Card
+        </label>
+        <label class="payment-option">
+          <input type="radio" name="payment" value="debit"> Debit Card / Bank Transfer
+        </label>
+        <label class="payment-option">
+          <input type="radio" name="payment" value="gift"> Target Gift Card
+        </label>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn-submit" onclick="submitPayment()">🛒 Submit Payment</button>
+        <button class="btn-leave" onclick="leaveWebsite()">🛑 Leave this Website</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="modal-overlay" id="feedback-modal">
+  <div class="modal-content">
+    <h3 id="feedback-title"></h3>
+    <p id="feedback-text"></p>
+    <button class="modal-btn" onclick="closeModal()">Continue</button>
+  </div>
+</div>
+
+<footer class="site">
+  <p><strong>Evergreen Digital Academy</strong></p>
+  <p>Lessons are free to read, print, and share (CC BY-SA 4.0) · <span class="nolink"><a href="../about.html">About this project</a></span></p>
+</footer>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+  // Text size logic
+  (function () {
+    var box = document.getElementById('textsize');
+    if (box) {
+      box.hidden = false;
+      var saved = localStorage.getItem('ega-size') || '';
+      if (saved) document.documentElement.classList.add(saved);
+      box.addEventListener('click', function (e) {
+        var b = e.target.closest('button'); if (!b) return;
+        document.documentElement.classList.remove('size-lg', 'size-xl');
+        if (b.dataset.size) document.documentElement.classList.add(b.dataset.size);
+        localStorage.setItem('ega-size', b.dataset.size);
+      });
+    }
+  })();
+
+  // Simulator logic
+  var currentChallenge = 1;
+  var urlDisplay = document.getElementById('url-display');
+  
+  function getSelectedPayment() {
+    var radios = document.getElementsByName('payment');
+    for (var i = 0; i < radios.length; i++) {
+      if (radios[i].checked) return radios[i].value;
+    }
+    return null;
+  }
+  
+  function clearPayment() {
+    var radios = document.getElementsByName('payment');
+    for (var i = 0; i < radios.length; i++) {
+      radios[i].checked = false;
+    }
+  }
+
+  function showModal(title, titleColor, textHTML) {
+    var modal = document.getElementById('feedback-modal');
+    var titleEl = document.getElementById('feedback-title');
+    var textEl = document.getElementById('feedback-text');
+    titleEl.textContent = title;
+    titleEl.style.color = titleColor;
+    textEl.innerHTML = textHTML;
+    modal.classList.add('active');
+  }
+
+  function submitPayment() {
+    var payment = getSelectedPayment();
+    if (!payment) {
+      showModal("Please select a payment method", "#333", "You need to choose how to pay before submitting.");
+      return;
+    }
+    
+    if (currentChallenge === 1) {
+      // Fake store -> fail
+      showModal("Oops! That one was a sneaky trick.", "#d9534f", "If you look closely at the address bar, it says <strong>'amaz0n-update-store.com'</strong> instead of the real <strong>'amazon.com'</strong>. In the real world, this copycat website would steal your payment information. But <strong>here in the simulator, you are completely safe!</strong> You did not break anything or lose any money.<br><br>Always check the top of the screen to make sure the store's name is spelled perfectly. Let's take a deep breath and try another one!");
+      currentChallenge = 2; // Advance to challenge 2
+    } else if (currentChallenge === 2) {
+      // Real store -> depends on payment method
+      if (payment === 'credit') {
+        showModal("Perfect! You did two very important things right:", "#5cb85c", "1. You checked the website address and saw it was the real, perfectly spelled store.<br>2. You picked a Credit Card, which gives you the strongest protection if anything ever goes wrong.<br><br>You are becoming a very confident and safe online shopper. Great job!");
+      } else {
+        showModal("You checked the website address, and it was the real store! Well done.", "#d9534f", "However, you chose a payment method that does not protect you very well. A Debit Card takes money directly out of your actual bank account immediately. If a mistake happens, it is very hard to get that money back. (And remember, Gift Cards should never be used to pay for everyday online shopping).<br><br><strong>Credit Cards are the safest choice.</strong> If a criminal steals a credit card number, they are spending the bank's money, not yours. The bank will usually cancel the fake charge for you. Let's try again!");
+      }
+    }
+  }
+
+  function leaveWebsite() {
+    if (currentChallenge === 1) {
+      showModal("Great job!", "#5cb85c", "You noticed that the website address (amaz0n-update-store.com) was a fake copycat and you correctly decided to leave. Let's move on to the next challenge!");
+      currentChallenge = 2;
+    } else if (currentChallenge === 2) {
+      showModal("Oops! This was the real store.", "#333", "The address bar says <strong>'www.amazon.com'</strong>, which is the real store. It's perfectly safe to buy things here, as long as you pick the safest payment method. Try again and select a payment method this time!");
+    }
+  }
+
+  function closeModal() {
+    document.getElementById('feedback-modal').classList.remove('active');
+    
+    // Update UI based on challenge state
+    if (currentChallenge === 2) {
+      urlDisplay.textContent = "www.amazon.com";
+      clearPayment();
+    }
+  }
+</script>
+</body>
+</html>
