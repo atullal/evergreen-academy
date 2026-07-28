@@ -67,3 +67,9 @@ Next time you see a message like this, close the email. If you are worried, call
 "Great job! You spotted the trick. 
 
 By slowing down and noticing the warning signs (like urgency or asking for money), you kept your information safe. You are doing wonderfully. Let's keep going!"
+
+---
+**Approval:**
+- **Reviewer:** Quill
+- **Date:** 2026-07-28
+- **Checklist Version:** v2-simulator
