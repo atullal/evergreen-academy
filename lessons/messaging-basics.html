@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 5: Messaging Basics — Evergreen Digital Academy</title>
+<meta name="description" content="Free, patient technology lessons for older adults.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site">
+  <div class="header-container">
+    <div>
+      <div class="brand"><a href="../index.html">Evergreen Digital Academy</a></div>
+      <div class="tagline">Free, patient technology lessons for older adults</div>
+    </div>
+    <div class="toolbar">
+      <div id="google_translate_element"></div>
+      <div class="textsize" id="textsize" hidden>
+        <button class="b1" data-size="" aria-label="Normal text size">A</button>
+        <button class="b2" data-size="size-lg" aria-label="Large text size">A</button>
+        <button class="b3" data-size="size-xl" aria-label="Largest text size">A</button>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="crumbs"><a href="../index.html">&larr; Back to all lessons</a></nav>
+<main class="lesson-content">
+<h1>Lesson 5: Messaging Basics</h1>
+<p>Staying in touch with family and friends is easier than ever. You might see different apps on your phone for sending messages. It is normal to feel a little confused by the choices. You cannot break your phone by trying them out.</p>
+<h2>Types of Messages</h2>
+<p>There are two main ways phones send written notes:</p>
+<ol class="steps">
+<li><strong>Standard Text Message (SMS):</strong> This stands for Short Message Service. It uses your regular phone plan to send words.</li>
+<li><strong>Internet Message:</strong> Apps like WhatsApp or iMessage use your Wi-Fi or cell phone data instead of your phone plan. They let you send pictures and videos much faster. They are usually free, even if you message someone in another country.</li>
+</ol>
+<h2>Group Chats</h2>
+<p>Sometimes you want to talk to the whole family at once.</p>
+<ol class="steps">
+<li>A <strong>Group Chat</strong> is a message where three or more people can talk together in one shared room.</li>
+<li>When you send a message in a group chat, everyone in the group sees it.</li>
+<li>When anyone replies, everyone sees the reply.</li>
+</ol>
+<h2>Voice Notes</h2>
+<p>Typing on a small screen can be tiring. You can send a recording of your voice instead.</p>
+<ol class="steps">
+<li>A <strong>Voice Note</strong> is a short audio recording you send exactly like a text message.</li>
+<li>Open a message to a friend.</li>
+<li>Look for a small microphone icon next to the box where you normally type your message.</li>
+<li>Press and hold your finger on the microphone icon.</li>
+<li>Speak your message out loud while holding your finger down.</li>
+<li>Let go of the icon to send it.</li>
+</ol>
+<p><em>(If you make a mistake while holding it down, you can usually slide your finger to the side to cancel it. Do not worry if you send it by accident!)</em></p>
+<h2>Try it yourself</h2>
+<ol class="steps">
+<li>Open your favorite messaging app.</li>
+<li>Find a conversation with a family member or close friend.</li>
+<li>Look for the microphone icon.</li>
+<li>Press and hold it, say "Hello, I am practicing sending a voice note!", and let go.</li>
+</ol>
+<hr>
+<h2>Printable Summary: Messaging Basics</h2>
+<p><em> <strong>Standard Text Message (SMS):</strong> A basic text sent using your regular phone plan. </em> <strong>Internet Message:</strong> A text sent using Wi-Fi or data (like WhatsApp or iMessage). Great for sending photos and talking internationally for free. <em> <strong>Group Chat:</strong> A shared message room where three or more people can talk at the same time. </em> <strong>Voice Note:</strong> A spoken audio recording sent in a message. * <strong>How to send a voice note:</strong> Press and hold the microphone icon next to the typing area, speak your message, and let go to send.</p>
+<hr>
+<p><strong>Approval:</strong></p>
+<ul>
+<li><strong>Reviewer:</strong> Quill</li>
+<li><strong>Date:</strong> 2026-07-28</li>
+<li><strong>Checklist Version:</strong> v1</li>
+</ul>
+<div class="completion-box">
+  <button id="markCompleteBtn" class="btn-complete">Mark Lesson as Complete</button>
+</div>
+</main>
+<footer class="site">
+  <p><strong>Evergreen Digital Academy</strong></p>
+  <p>Lessons are free to read, print, and share (CC BY-SA 4.0) · <span class="nolink"><a href="../about.html">About this project</a></span></p>
+</footer>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: "en", layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, "google_translate_element");
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+(function () {
+  var box = document.getElementById('textsize');
+  if (box) {
+    box.hidden = false;
+    var saved = localStorage.getItem('ega-size') || '';
+    if (saved) document.documentElement.classList.add(saved);
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      document.documentElement.classList.remove('size-lg', 'size-xl');
+      if (b.dataset.size) document.documentElement.classList.add(b.dataset.size);
+      localStorage.setItem('ega-size', b.dataset.size);
+    });
+  }
+  
+  var path = window.location.pathname.split("/").pop();
+  var btn = document.getElementById('markCompleteBtn');
+  if (btn) {
+    if (localStorage.getItem('completed-' + path)) {
+      btn.textContent = 'Lesson Completed ✓';
+      btn.disabled = true;
+    }
+    btn.addEventListener('click', function() {
+      localStorage.setItem('completed-' + path, 'true');
+      btn.textContent = 'Lesson Completed ✓';
+      btn.disabled = true;
+    });
+  }
+})();
+</script>
+</body>
+</html>
